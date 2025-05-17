@@ -24,6 +24,7 @@ export const images = pgTable('images',
         url: varchar({ length: 1024 }).notNull(),
         createdAt: timestamp('created_at').default(sql`CURRENT_TIMESTAMP`).notNull(),
         updatedAt: timestamp('updated_at'),
+        userId: varchar('userId', {length: 256}).notNull(),
     },
     (table) => [
         t.index('name_idx').on(table.name)    

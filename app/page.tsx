@@ -4,12 +4,12 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 // There are other approaches to make this page dynamic, but this is the simplest one for the example.
 export const dynamic = 'force-dynamic';
 
-export async function ImageGallery() {
+async function ImageGallery() {
   const images = (await db.query.images.findMany({
     orderBy: (model, { desc }) => desc(model.id)
   }));
 
-  return <div className="flex flex-wrap gap-4">
+  return <div className="flex flex-wrap gap-4 align-start w-full">
     {images.map((image) => (
       <div key={image.id} className="size-50">
         <img
