@@ -8,19 +8,19 @@ export function TopNav() {
   const router = useRouter();
 
   return (
-    <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
-      <div>Gallery</div>
+    <nav className="flex w-full items-center justify-between border-b p-4">
+      <h1 className="text-2xl font-bold">Gallery</h1>
+      
       <SignedOut>
         <SignInButton />
       </SignedOut>
+
       <SignedIn>
         <div className="flex flex-row gap-8">
           <UploadButton
             endpoint="imageUploader"
             onClientUploadComplete={(res) => {
-              // Do something with the response
-              // console.log("Files: ", res);
-              // alert("Upload Completed");
+              // Refresh current route to load latest uploaded image
               router.refresh();
             }}
             onUploadError={(error: Error) => {
@@ -30,7 +30,6 @@ export function TopNav() {
           />
           <UserButton />
         </div>
-
       </SignedIn>
     </nav>
   )

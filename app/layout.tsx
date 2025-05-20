@@ -26,23 +26,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <NextSSRPlugin
-        routerConfig={extractRouterConfig(ourFileRouter)}
-      />
-      <html lang="en">
+
+    <html lang="en">
+      <ClerkProvider>
+        {/* <NextSSRPlugin
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        /> */}
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased
-        flex flex-col gap-4`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <TopNav />
-          {children}
+          <div className="h-screen grid grid-rows-[auto_1fr]">
+            <TopNav />
+            <main className="overflow-y-scroll">
+              {children}
+            </main>
+          </div>
+          {modal}
+          <div id="modal-root" />
         </body>
-      </html>
-    </ClerkProvider>
+      </ClerkProvider>
+
+    </html>
   );
 }
