@@ -1,4 +1,4 @@
-import FullPageImageView from "@/components/full-image-page"
+import FullPageImageView from "@/components/full-page-image"
 
 export default async function PhotoPage(
     {
@@ -15,6 +15,5 @@ export default async function PhotoPage(
         if (Number.isNaN(idAsNumber)) {
             return <div>Invalid image ID</div>
         }
-        console.log("PhotoPage", {id, idAsNumber})
        return <FullPageImageView id={idAsNumber}/>
 }

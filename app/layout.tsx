@@ -6,6 +6,9 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { TopNav } from "./_components/top-nav";
 import { Toaster } from "@/components/ui/sonner";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "./api/uploadthing/core";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +34,11 @@ export default function RootLayout({
 }>) {
   return (
 
-    <html lang="en">
-      <ClerkProvider>
-        {/* <NextSSRPlugin
+    <ClerkProvider>
+      <html lang="en">
+        <NextSSRPlugin
           routerConfig={extractRouterConfig(ourFileRouter)}
-        /> */}
+        />
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
         >
@@ -49,8 +52,8 @@ export default function RootLayout({
           <div id="modal-root" />
           <Toaster />
         </body>
-      </ClerkProvider>
 
-    </html>
+      </html>
+    </ClerkProvider>
   );
 }
